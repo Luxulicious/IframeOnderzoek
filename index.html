@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div><iframe id="iframeScreen" src="embedded.html" style="min-width: 100%; min-height: 30%; border-width: 0px;"></iframe></div>
+    <div><object id="objectScreen" data="embedded.html" style="min-width: 100%; min-height: 30%;"></object></div>
+    <div><embed id="embedScreen" src="embedded.html" style="min-width: 100%; min-height: 30%;"></embed></div>
+    <script>
+        function wowFunction(id) {
+            var element = document.getElementById(id);
+            element.addEventListener("load", function () {
+                console.log(element);
+                var innerDoc = (element.contentDocument) ? element.contentDocument : element.contentWindow.document;
+                console.log(innerDoc);
+                var innerElement = innerDoc.getElementById("content");
+                console.log(innerElement);
+                innerElement.textContent = "Wow!";
+                console.log("Finished!");
+                return innerElement;
+            });
+        }
+
+        var iframe = wowFunction("iframeScreen");
+        var object = wowFunction("objectScreen");
+        var embed = wowFunction("embedScreen");
+
+    </script>
+</body>
+</html>
